@@ -19,7 +19,7 @@ BEGIN
 {
 	$hex       = 1;
 	@EXPORT    = qw(encode_entities decode_entities _decode_entities);
-	@EXPORT_OK = qw(%entity2char %char2entity encode_entities_numeric);
+	@EXPORT_OK = qw(%entity2char %char2entity encode_entities_numeric num_entity);
 	
 	$default_unsafe_characters = qr/[^\w\n\r\t !\#\$%\(-;=?-~]/x;
 
@@ -2320,7 +2320,7 @@ sub _decode_entities ($$;$)
 			elsif (defined $3)
 				{ chr(hex $3); }
 			elsif (defined $_[2] and $_[2])
-				{ $map{$2} || _search_entity($4, \%map); }
+				{ $map{$4} || _search_entity($4, \%map); }
 			else
 				{ $map{$4} || $1; }
 		/xeg;
@@ -2396,13 +2396,13 @@ HTML::HTML5::Entities - drop-in replacement for HTML::Entities
 
 =head1 SYNOPSIS
 
-	use HTML::Entities;
-	
-	my $enc = encode_entities('fish & chips');
-	print "$enc\n";   # fish &amp; chips
-	
-	my $dec = decode_entities($enc);
-	print "$dec\n";   # fish & chips
+ use HTML::Entities;
+ 
+ my $enc = encode_entities('fish & chips');
+ print "$enc\n";   # fish &amp; chips
+ 
+ my $dec = decode_entities($enc);
+ print "$dec\n";   # fish & chips
 
 =head1 DESCRIPTION
 
@@ -2445,13 +2445,14 @@ If C<< $expand_prefix >> is TRUE then entities without trailing ";" in
 C<< %entity2char >> will even be expanded as a prefix of a longer
 unrecognized name.
 
-	$string = "foo&nbspbar";
-	_decode_entities($string, { nb => "@", nbsp => "\xA0" }, 1);
-	print $string;  # will print "foo bar"
+ $string = "foo&nbspbar";
+ _decode_entities($string, { nb => "@", nbsp => "\xA0" }, 1);
+ print $string;  # will print "foo bar"
 
 This routine is exported by default.
 
 =item C<< encode_entities($string) >>
+
 =item C<< encode_entities($string, $unsafe_chars) >>
 
 This routine replaces unsafe characters in C<< $string >> with their
@@ -2469,6 +2470,33 @@ This routine works just like encode_entities, except that the
 replacement entities are always numeric.
 
 This routine is not exported by default.
+
+=item C<< num_entity($string) >>
+
+Given a single character string, encodes it as a numeric entity.
+
+This routine is not exported by default.
+
+=back
+
+The following functions cannot be exported. They behave the same as the
+exportable functions.
+
+=over
+
+=item C<< HTML::Entities::decode($string, ...) >>
+
+=item C<< HTML::Entities::encode($string) >>
+
+=item C<< HTML::Entities::encode($string, $unsafe_characters) >>
+
+=item C<< HTML::Entities::encode_numeric($string) >>
+
+=item C<< HTML::Entities::encode_numeric($string, $unsafe_characters) >>
+
+=item C<< HTML::Entities::encode_numerically($string) >>
+
+=item C<< HTML::Entities::encode_numerically($string, $unsafe_characters) >>
 
 =back
 
