@@ -1,7 +1,7 @@
 package HTML::HTML5::Entities;
 
 use 5.008001;
-use base qw[Exporter];
+use parent qw[Exporter];
 use constant { FALSE => 0, TRUE => 1 };
 use strict;
 use utf8;
