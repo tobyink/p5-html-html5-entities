@@ -10,7 +10,7 @@ BEGIN {
 	$HTML::HTML5::Entities::AUTHORITY = 'cpan:TOBYINK';
 }
 BEGIN {
-	$HTML::HTML5::Entities::VERSION   = '0.001';
+	$HTML::HTML5::Entities::VERSION   = '0.002';
 }
 
 our (%entity2char, %char2entity, $hex, $default_unsafe_characters, @EXPORT, @EXPORT_OK);
@@ -2354,7 +2354,9 @@ BEGIN
 		"\x{00fd}"  => '&yacute;',
 		"\x{00fe}"  => '&thorn;',
 		"\x{00ff}"  => '&yuml;',
+		"\x{0026}"  => '&amp;',
 		"\x{0022}"  => '&quot;',
+		"\x{003c}"  => '&lt;',
 		"\x{003e}"  => '&gt;',
 		"\x{0152}"  => '&OElig;',
 		"\x{0153}"  => '&oelig;',

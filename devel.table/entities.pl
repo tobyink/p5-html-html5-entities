@@ -1,4 +1,6 @@
 my $data = do { local $/ = <DATA> };
+printf("\t\"\\x{%04x}\"  => \'%s\',\n", 38, '&amp;');
+printf("\t\"\\x{%04x}\"  => \'%s\',\n", 60, '&lt;');
 while ($data =~ m{ <!ENTITY \s* (\S+) \s* "(.+?)" \s* > }gix)
 {
 	my ($ent, $exp) = ("&$1;", $2);
