@@ -1,16 +1,13 @@
 package HTML::HTML5::Entities;
 
 use 5.008001;
-use parent qw[Exporter];
-use constant { FALSE => 0, TRUE => 1 };
+use base qw[Exporter];
 use strict;
 use utf8;
 
 BEGIN {
 	$HTML::HTML5::Entities::AUTHORITY = 'cpan:TOBYINK';
-}
-BEGIN {
-	$HTML::HTML5::Entities::VERSION   = '0.002';
+	$HTML::HTML5::Entities::VERSION   = '0.003';
 }
 
 our (%entity2char, %char2entity, $hex, $default_unsafe_characters, @EXPORT, @EXPORT_OK);
@@ -2632,7 +2629,7 @@ sub num_entity
 *encode_numeric = \&encode_entities_numeric;
 *encode_numerically = \&encode_entities_numeric;
 
-TRUE;
+1;
 
 __END__
 
