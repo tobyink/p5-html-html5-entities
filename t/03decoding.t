@@ -1,5 +1,7 @@
 use Test::More tests => 7;
-use HTML::HTML5::Entities qw[decode_entities _decode_entities %entity2char];
+use HTML::HTML5::Entities qw[
+	encode_entities decode_entities _decode_entities %entity2char
+];
 
 is(decode_entities('&amp;'),            '&',   'decode_entities works');
 is(decode_entities('a&amp;b'),          'a&b', 'non-entities passed though');
