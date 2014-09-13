@@ -41,5 +41,11 @@ dist:v_0-003
 	issued    2014-09-13;
 	changeset [
 		item "Switch to Dist::Inkt."^^Packaging;
+		item [
+			a dcs:Bugfix;
+			label "Various RT#97659-related fixes.";
+			dcs:fixes RT#97659;
+			dcs:thanks [ label "pa genyon"; foaf:mbox <mailto:pagenyon@gmail.com> ];
+		];
 	].
 
